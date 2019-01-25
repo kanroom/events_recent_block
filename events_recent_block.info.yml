@@ -1,0 +1,8 @@
+name: Recent events in custom block
+type: module
+description: Provide outputting 5 recent events through the custom block.
+package: Other
+core: 8.x
+dependencies:
+  - drupal:block
+  - drupal:node

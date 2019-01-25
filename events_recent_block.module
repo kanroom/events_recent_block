@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Module file for events_recent_block.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_node_presave().
+ */
+function events_recent_block_node_presave(Node $node) {
+  if ($node->getType() == 'event') {
+    $tags = ['node_type:' . $node->getType()];
+    Cache::invalidateTags($tags);
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function events_recent_block_node_delete(Node $node) {
+  if ($node->getType() == 'event') {
+    $tags = ['node_type:' . $node->getType()];
+    Cache::invalidateTags($tags);
+  }
+}
